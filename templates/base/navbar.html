@@ -1,0 +1,75 @@
+{% load static %}
+
+<header class="header">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <img width="50px" src="{% static 'images/pg02.png' %}" alt="img1">
+                </a>
+                <a class="home" href="{% url 'index' %}">
+                    <i>playDATE</i>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <ul class="nav-group">
+
+                    <li class="nav-item">
+                        <a href="{% url 'playgrounds list' %}">
+                            <i>Playgrounds</i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="">
+                            <i>Photos</i>
+                        </a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a href="{% url 'playground add' %}">
+                            <i>Add Playground</i>
+                        </a>
+                    </li>
+{##}
+{#                    <li class="nav-item">#}
+{#                        <a href="">#}
+{#                            <i>Add Photo</i>#}
+{#                        </a>#}
+{#                    </li>#}
+
+                    <li class="nav-item">
+                        <a href="{% url 'logout user' %}">
+                            <i>Logout</i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'profile details' pk=request.user.pk %}">
+                            <i>{{ request.user.username }}</i>
+                        </a>
+                    </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'login user' %}">
+                            <i>Login</i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'register user' %}">
+                            <i>Register</i>
+                        </a>
+                    </li>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

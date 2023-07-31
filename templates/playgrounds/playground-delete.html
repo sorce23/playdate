@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container-form">
+  <h2>Delete Playground?</h2>
+  <form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Yes</button>
+      <a href="{% url 'playgrounds list' %}" class="btn btn-secondary">No</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
