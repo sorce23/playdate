@@ -10,7 +10,7 @@ UserModel = get_user_model()
 
 class Photo(models.Model):
     DESCRIPTION_MAX_LENGTH = 300
-    DESCRIPTION_MIN_LENGTH = 300
+    DESCRIPTION_MIN_LENGTH = 5
     LOCATION_MAX_LENGTH = 50
 
     playground_image = models.ImageField(

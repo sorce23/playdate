@@ -6,28 +6,36 @@ from playdate.common.forms import CommentForm
 from .forms import PhotoAddForm, PhotoEditForm
 from django.views import generic as views
 from .models import Photo
+from ..playgrounds.models import Playground
 
+
+def photo_list(request):
+    photos = Photo.objects.all()
+
+    context = {"photos": photos}
+
+    return render(request, "photos/photo_list.html", context)
 
 @login_required
-class PhotoAddView(views.CreateView):
-    template_name = "photos/photo-add.html"
-    form_class = PhotoAddForm
+def photo_add(request, pk):
+    playground = Playground.objects.get(pk=pk)
+    form = PhotoAddForm()
 
-    def get_success_url(self):
-        return reverse("photo details", kwargs={
-            "pk": self.object.pk
-        })
+    if request.method == "POST":
+        form = PhotoAddForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = form.save(commit=False)
+            photo.user = request.user
+            photo.playground_name = playground
+            photo.save()
+        return redirect("playground details", pk=pk)
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.user = self.request.user
-    #     self.object.save()
-    #     return super().form_valid(form)
+    context = {
+        "form": form,
+        "playground": playground,
+    }
 
-    def get_form(self, *args, **kwargs):
-        form = super().get_form(*args, **kwargs)
-        form.instance.user = self.request.user
-        return form
+    return render(request, "photos/photo-add.html", context=context)
 
 
 @login_required
@@ -36,6 +44,7 @@ def photo_details(request, pk):
     comment_form = CommentForm()
 
     context = {
+        "user": photo.user,
         "photo": photo,
         "likes": photo.like_set.count(),
         "comments": photo.comment_set.all(),

@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     "playdate.common",
     "playdate.accounts",
     "playdate.playgrounds",
-    "playdate.photos"
+    "playdate.photos",
 ]
 
 MIDDLEWARE = [

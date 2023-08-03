@@ -71,6 +71,7 @@ def comment_functionality(request, photo_id):
 
             new_comment_instance = form.save(commit=False)
             new_comment_instance.to_photo = photo
+            new_comment_instance.user = request.user
             new_comment_instance.save()
 
         return redirect(request.META["HTTP_REFERER"] + f"#{photo_id}")

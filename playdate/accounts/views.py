@@ -73,6 +73,25 @@ class ProfileDetailsView(views.DetailView):
         return context
 
 
+class ProfileDetailsViewVisit(views.DetailView):
+    template_name = "accounts/profile-details-visit.html"
+    model = UserModel
+
+    profile_image = static("images/person02.svg")
+
+    def get_profile_image(self):
+        if self.object.profile_picture is not None:
+            return self.object.profile_picture
+        return self.profile_image
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["profile_image"] = self.get_profile_image()
+
+        return context
+
+
 class ProfileEditView(views.UpdateView):
     template_name = "accounts/profile-edit-page.html"
     model = UserModel

@@ -26,9 +26,9 @@
     <p><strong>Rating:</strong>{{ playground.get_rating_display }}</p>
     {% endif %}
 
-{#    <a href="{% url 'photo add' %}">#}
-{#        <button type="submit">Add Photo</button>#}
-{#    </a>#}
+    <a href="{% url 'photo add' playground.pk %}">
+        <button type="submit">Add Photo</button>
+    </a>
 
     <a href="{% url 'playground edit' playground.pk %}">
         <button type="submit">Edit Playground</button>
@@ -39,10 +39,12 @@
         {% for photo in photos %}
         <div class="about-item">
 
-            <img class="about-img" src="{{ photo.image.url }}" alt="{{ playground.name }}">
+            <a href="{% url 'photo details' photo.pk %}">
+                <img class="about-img" src="{{ photo.playground_image.url }}" alt="{{ playground.name }}">
+            </a>
             <h4 class="subtitle2">{{ playground.name }}</h4>
             <p class="desc">
-                {{ playground.description }}
+                {{ photo.description }}
             </p>
 
         </div>

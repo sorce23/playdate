@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div class="profile">
+        <div class="profile-data">
+            <div class="profile_img">
+                <div class="image">
+                    <img src="{{ profile_image.url }}" alt="profile_image">
+                </div>
+            </div>
+            <div class="personal">
+                <div class="edit">
+                    <p>{{ object.username }}</p>
+                </div>
+                <div class="data">
+                </div>
+
+                <h3 class="names">
+                    {% if object.full_name is not None %}
+                        {{ object.full_name }}
+                    {% else %}
+                        Empty
+                    {% endif %}
+                </h3>
+
+                <p class="email">{{ object.email }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

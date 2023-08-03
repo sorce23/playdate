@@ -52,7 +52,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
+    background-color: #fbe5b3;
+    opacity: 0.8;
     z-index: 1000;
 }
 
@@ -163,19 +164,19 @@ form > *:not(.form-group) {
 
 /* CONTENT */
 .container-main {
-    max-width: 80%;
+    max-width: 90%;
     margin: 0 auto;
     padding: 5%;
 }
 
 .playground-details {
     font-size: 1.5rem;
-    padding: 4rem 10%;
+    padding: 4rem 5%;
     text-align: center;
 }
 
 .content-section {
-    padding: 4rem 10%;
+    padding: 2rem 0;
 }
 
 .content-section .about-wrapper {
@@ -201,63 +202,6 @@ form > *:not(.form-group) {
 }
 
 /* PROFILE */
-
-/*.delete-profile {*/
-/*    padding: 10px;*/
-/*    background-color: #ee4131;*/
-/*}*/
-
-/*.profile {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  margin-top: 40px;*/
-/*}*/
-
-/*.profile-data {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: flex-start;*/
-/*  padding: 20px;*/
-/*  border: 1px solid #ccc;*/
-/*  border-radius: 10px;*/
-/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*}*/
-
-/*.profile_img {*/
-/*  margin-bottom: 20px;*/
-/*}*/
-
-/*.image img {*/
-/*  width: 150px;*/
-/*  height: 150px;*/
-/*  object-fit: cover;*/
-/*  border-radius: 50%;*/
-/*}*/
-
-/*.personal {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  margin-bottom: 10px;*/
-/*}*/
-
-/*.edit {*/
-/*  margin-right: 10px;*/
-/*}*/
-
-/*.edit-img,*/
-/*.bin-img {*/
-/*  width: 24px;*/
-/*  height: 24px;*/
-/*}*/
-
-/*.names {*/
-/*  margin-bottom: 5px;*/
-/*  font-size: 20px;*/
-/*}*/
-
-/*.email {*/
-/*  color: #666;*/
-/*}*/
 
 .profile {
   display: flex;
@@ -326,6 +270,139 @@ form > *:not(.form-group) {
   .names {
     font-size: 18px;
   }
+}
+
+/* PHOTO DETAILS */
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fcf5b3;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.card .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card .userDetails {
+  display: flex;
+  align-items: center;
+}
+
+.card .userDetails .profile_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.card .userDetails .profile_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .photo-info {
+  display: flex;
+  align-items: center;
+}
+
+.card .photo-info span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.card .photo-info .edit-delete-btns {
+  display: flex;
+  align-items: center;
+}
+
+.card .photo-info .edit-delete-btns a {
+  margin-right: 5px;
+}
+
+.card .imgBx {
+  text-align: center;
+}
+
+.card .bottom {
+  margin-top: 15px;
+}
+
+.card .bottom .actionBtns {
+  display: flex;
+  align-items: center;
+}
+
+.card .bottom .actionBtns .left {
+  display: flex;
+  align-items: center;
+}
+
+.card .bottom .actionBtns .left a {
+  margin-right: 10px;
+}
+
+.card .bottom .actionBtns .likes {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card .bottom .comments {
+  margin-top: 10px;
+}
+
+.card .bottom .comments .top {
+  display: flex;
+  align-items: center;
+}
+
+.card .bottom .comments .top .comment-data {
+  display: flex;
+  align-items: center;
+}
+
+.card .bottom .comments .top .comment-data .profilepic {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.card .bottom .comments .top .comment-data .profilepic img {
+  width: 20%;
+  height: 20%;
+  object-fit: cover;
+}
+
+.addComments {
+    display: flex;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.addComments form {
+    width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.addComments form button {
+  padding: 5px 15px;
+  background-color: #0095f6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* FOOTER */
