@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block page_content %}
-<div class="container-main">
-  <div class="playground-details">
+<div class="playground-details">
     <h2>{{ playground.name }}</h2>
     <p><strong>Description:</strong></p>
     <p> {{ playground.description }}</p>
@@ -16,25 +15,27 @@
     <p><strong>Availability:</strong></p>
     <p>{{ playground.get_availability_display }}</p>
     {% if playground.price %}
-    <p><strong>Price:</strong></p>
-    <p>{{ playground.price }}</p>
+        <p><strong>Price:</strong></p>
+        <p>{{ playground.price }}</p>
     {% endif %}
     {% if playground.latitude and playground.longitude %}
-    <p><strong>Coordinates:</strong> {{ playground.latitude }}, {{ playground.longitude }}</p>
+        <p><strong>Coordinates:</strong> {{ playground.latitude }}, {{ playground.longitude }}</p>
     {% endif %}
     {% if playground.rating %}
-    <p><strong>Rating:</strong>{{ playground.get_rating_display }}</p>
+        <p><strong>Rating:</strong>{{ playground.get_rating_display }}</p>
     {% endif %}
 
-    <a href="{% url 'photo add' playground.pk %}">
-        <button type="submit">Add Photo</button>
-    </a>
-
-    <a href="{% url 'playground edit' playground.pk %}">
-        <button type="submit">Edit Playground</button>
-    </a>
+    <div class="playground-edit">
+        <a href="{% url 'photo add' playground.pk %}">
+            <button type="submit" class="form-button">Add Photo</button>
+        </a>
+        <a href="{% url 'playground edit' playground.pk %}">
+            <button type="submit" class="form-button">Edit Playground</button>
+        </a>
+    </div>
 
     <section id="about" class="content-section">
+
     <div class="about-wrapper">
         {% for photo in photos %}
         <div class="about-item">
@@ -50,8 +51,6 @@
         </div>
         {% endfor %}
     </div>
-
-
   </div>
-</div>
+
 {% endblock %}

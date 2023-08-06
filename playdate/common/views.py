@@ -4,10 +4,12 @@ from django.shortcuts import render, redirect
 from playdate.photos.models import Photo
 from .models import Like, Comment
 from .forms import CommentForm, SearchForm
+from ..accounts.models import PlaydateUser
 
 
 def index(request):
     photos = Photo.objects.all()
+    users = PlaydateUser.objects.all()
 
     search_form = SearchForm(request.GET)
 
@@ -23,6 +25,7 @@ def index(request):
                 .exists()
 
     context = {
+        "users": users,
         "all_photos": photos,
         "comment_form": CommentForm(),
         "search_form": search_form,

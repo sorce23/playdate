@@ -1,14 +1,14 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    <div class="edit-delete">
+    <div class="container-form">
         <h2>Edit Profile</h2>
         <form action="{% url 'profile edit' object.pk %}" enctype="multipart/form-data" method="post" >
 
             {{ form.as_p }}
             {% csrf_token %}
 
-            <button class="edit-btn" type="submit">Edit</button>
+            <button class="form-button" type="submit">Edit</button>
         </form>
     </div>
 

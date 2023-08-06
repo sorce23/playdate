@@ -3,24 +3,19 @@
 
 {% block page_content %}
 
-    <div class="container-main">
-        <div class="container-form">
-            <h1 id="title-h1">Playdate</h1>
+    <div class="container-form">
+        <h1 id="title-h1">Playdate</h1>
 
-            <form action="{% url 'login user' %}" method="post">
-                {{ form.username|placeholder:'Enter username:' }}
-                {{ form.password|placeholder:'Enter password:' }}
+        <form action="{% url 'login user' %}" method="post">
+            {{ form.username|placeholder:'Enter username:' }}
+            {{ form.password|placeholder:'Enter password:' }}
 
-                <input type="hidden" value="{{ next }}" name="next"/>
+            {% csrf_token %}
 
-                {% csrf_token %}
+            <button type="submit" class="form-button">Log in</button>
+        </form>
 
-                <button type="submit" class="btn">Log in</button>
-            </form>
-
-        </div>
-        <div id="title-h1">
-            <p>Don't have account? <a href="{% url 'register user' %}?next={{ next }}">Register</a></p>
-        </div>
+        <p>Not registered? <a href="{% url 'register user' %}?next={{ next }}">Register</a></p>
     </div>
+
 {% endblock %}

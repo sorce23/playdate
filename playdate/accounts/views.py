@@ -18,13 +18,12 @@ class OnlyAnonymousMixin:
 
 
 class RegisterUserView(OnlyAnonymousMixin, views.CreateView):
-    template_name = "accounts/register-page.html"
+    template_name = "accounts/register.html"
     form_class = RegisterUserForm
     success_url = reverse_lazy("index")
 
     def form_valid(self, form):
         result = super().form_valid(form)
-
         login(self.request, self.object)
 
         return result
@@ -32,16 +31,7 @@ class RegisterUserView(OnlyAnonymousMixin, views.CreateView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["next"] = self.request.GET.get("next", "")
-
-        return context
-
     def get_success_url(self):
-        if 'next' in self.request.POST:
-            return self.request.POST["next"]
         return self.success_url
 
 
@@ -55,45 +45,17 @@ class LogoutUserView(auth_views.LogoutView):
 
 
 class ProfileDetailsView(views.DetailView):
-    template_name = "accounts/profile-details-page.html"
+    template_name = "accounts/profile-details.html"
     model = UserModel
-
-    profile_image = static("images/person02.svg")
-
-    def get_profile_image(self):
-        if self.object.profile_picture is not None:
-            return self.object.profile_picture
-        return self.profile_image
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["profile_image"] = self.get_profile_image()
-
-        return context
 
 
 class ProfileDetailsViewVisit(views.DetailView):
     template_name = "accounts/profile-details-visit.html"
     model = UserModel
 
-    profile_image = static("images/person02.svg")
-
-    def get_profile_image(self):
-        if self.object.profile_picture is not None:
-            return self.object.profile_picture
-        return self.profile_image
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["profile_image"] = self.get_profile_image()
-
-        return context
-
 
 class ProfileEditView(views.UpdateView):
-    template_name = "accounts/profile-edit-page.html"
+    template_name = "accounts/profile-edit.html"
     model = UserModel
     fields = [
         "username",
@@ -109,6 +71,6 @@ class ProfileEditView(views.UpdateView):
 
 
 class ProfileDeleteView(views.DeleteView):
-    template_name = "accounts/profile-delete-page.html"
+    template_name = "accounts/profile-delete.html"
     model = UserModel
     success_url = reverse_lazy("index")

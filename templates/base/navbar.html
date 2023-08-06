@@ -1,69 +1,56 @@
 {% load static %}
 
-<header class="header">
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="{% url 'index' %}">
-                    <img width="50px" src="{% static 'images/pg02.png' %}" alt="img1">
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'images/pg02.png' %}" alt="Logo">
+            <span class="navbar-name">playDATE</span>
+        </a>
+    </div>
+    <ul class="navbar-links">
+        <li class="navbar-item">
+            <a href="{% url 'playgrounds list' %}">
+                <span class="navbar-list-item">Playgrounds</span>
+            </a>
+        </li>
+        <li class="navbar-item">
+            <a href="{% url 'photo list' %}">
+                <span class="navbar-list-item">Photos</span>
+            </a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+            <li class="navbar-item">
+                <a href="{% url 'playground add' %}">
+                    <span class="navbar-list-item">Add Playground</span>
                 </a>
-                <a class="home" href="{% url 'index' %}">
-                    <i>playDATE</i>
+            </li>
+
+            <li class="navbar-item">
+                <a href="{% url 'logout user' %}">
+                    <span class="navbar-list-item">Logout</span>
                 </a>
-            </div>
+            </li>
 
-            <div class="nav-links">
-                <ul class="nav-group">
+            <li class="navbar-item">
+                <a href="{% url 'profile details' pk=request.user.pk %}">
+                    <span class="navbar-list-item">{{ request.user.username }}</span>
+                </a>
+            </li>
 
-                    <li class="nav-item">
-                        <a href="{% url 'playgrounds list' %}">
-                            <i>Playgrounds</i>
-                        </a>
-                    </li>
+        {% else %}
+            <li class="navbar-item">
+                <a href="{% url 'login user' %}">
+                    <span class="navbar-list-item">Login</span>
+                </a>
+            </li>
 
-                    <li class="nav-item">
-                        <a href="{% url 'photo list' %}">
-                            <i>Photos</i>
-                        </a>
-                    </li>
+            <li class="navbar-item">
+                <a href="{% url 'register user' %}">
+                    <span class="navbar-list-item">Register</span>
+                </a>
+            </li>
 
-                    {% if request.user.is_authenticated %}
-
-                    <li class="nav-item">
-                        <a href="{% url 'playground add' %}">
-                            <i>Add Playground</i>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'logout user' %}">
-                            <i>Logout</i>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'profile details' pk=request.user.pk %}">
-                            <i>{{ request.user.username }}</i>
-                        </a>
-                    </li>
-
-                    {% else %}
-                    <li class="nav-item">
-                        <a href="{% url 'login user' %}">
-                            <i>Login</i>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'register user' %}">
-                            <i>Register</i>
-                        </a>
-                    </li>
-
-                    {% endif %}
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+        {% endif %}
+    </ul>
+</nav>

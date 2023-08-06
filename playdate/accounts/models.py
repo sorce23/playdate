@@ -1,20 +1,16 @@
 from enum import Enum
 
 from django.core import validators
+from django.core.files.storage import default_storage
 from django.db import models
 from django.contrib.auth import models as auth_models
+from django.templatetags.static import static
 
 
 class ChoicesMixin:
     @classmethod
     def choices(cls):
         return [(choice.value, choice.name) for choice in cls]
-
-
-class ChoicesStringsMixin(ChoicesMixin):
-    @classmethod
-    def max_length(cls):
-        return max(len(x.value) for x in cls) + 1
 
 
 class Gender(ChoicesMixin, Enum):
@@ -62,7 +58,6 @@ class PlaydateUser(auth_models.AbstractUser):
         upload_to="profile_picture/",
         null=True,
         blank=True,
-        default="profile_picture/person02.svg",
     )
 
     @property
@@ -72,6 +67,19 @@ class PlaydateUser(auth_models.AbstractUser):
         return self.username
 
     def save(self, *args, **kwargs):
+        if self.pk is not None:
+            existing_object = PlaydateUser.objects.get(pk=self.pk)
+
+            if existing_object.profile_picture != self.profile_picture:
+                self.delete_old_profile_picture(existing_object.profile_picture)
+
         result = super().save(*args, **kwargs)
 
         return result
+
+    def delete_old_profile_picture(self, old_file):
+        if old_file and default_storage.exists(old_file.name):
+            old_file.delete()
+
+    def clean(self):
+        super().clean()

@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% load forms %}
+
+{% block page_content %}
+
+    <div class="container-form">
+        <h1 id="title-h1">Playdate</h1>
+
+        <form action="{% url 'register user' %}" method="post">
+
+            {{ form.username|placeholder:'Username' }}
+            {{ form.email|placeholder:'Email' }}
+            {{ form.password1|placeholder:'Password' }}
+            {{ form.password2|placeholder:'Repeat Password' }}
+
+            {% csrf_token %}
+
+            <button type="submit" class="form-button">Register</button>
+        </form>
+        <p>Already registered? <a href="{% url 'login user' %}">Log in</a></p>
+
+    </div>
+
+{% endblock %}
