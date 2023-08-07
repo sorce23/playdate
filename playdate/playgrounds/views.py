@@ -6,19 +6,19 @@ from playdate.photos.models import Photo
 
 
 def playgrounds_list(request):
-    playgrounds = Playground.objects.all()
+    playgrounds = Playground.objects.all().order_by("country", "city")
     context = {"playgrounds": playgrounds}
     return render(request, "playgrounds/playgrounds-list.html", context)
 
 
 def playground_details(request, pk):
     playground = get_object_or_404(Playground, pk=pk)
-
     photos = Photo.objects.filter(playground=playground)
 
     context = {
         "playground": playground,
         "photos": photos,
+        "user": request.user,
     }
     return render(request, "playgrounds/playground-details.html", context)
 

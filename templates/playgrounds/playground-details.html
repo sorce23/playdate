@@ -30,9 +30,14 @@
         <a href="{% url 'photo add' playground.pk %}">
             <button type="submit" class="form-button">Add Photo</button>
         </a>
-        <a href="{% url 'playground edit' playground.pk %}">
-            <button type="submit" class="form-button">Edit Playground</button>
-        </a>
+        {% if user == playground.owner %}
+            <a href="{% url 'playground edit' playground.pk %}">
+                <button type="submit" class="form-button">Edit Playground</button>
+            </a>
+            <a href="{% url 'playground delete' playground.pk %}">
+                <button type="submit" class="form-button">Delete Playground</button>
+            </a>
+        {% endif %}
     </div>
 
     <section id="about" class="content-section">

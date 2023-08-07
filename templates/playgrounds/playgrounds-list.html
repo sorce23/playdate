@@ -8,7 +8,10 @@
     <h1>PLAYGROUNDS AND ATTRACTIONS</h1>
     {% for playground in playgrounds %}
         <ul>
-            <li><a href="{% url 'playground details' playground.pk %}">{{ playground.name }}</a> - {{ playground.city }}</li>
+            <li>
+                <a href="{% url 'playground details' playground.pk %}">{{ playground.name }} - </a>
+                {{ playground.get_country_display }} - {{ playground.city }}
+            </li>
         </ul>
     {% endfor %}
   </div>

@@ -5,3 +5,4 @@ from .models import Playground
 @admin.register(Playground)
 class PlaygroundAdmin(admin.ModelAdmin):
     list_display = ("name", "slug",)
+
