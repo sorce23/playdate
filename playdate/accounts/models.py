@@ -4,7 +4,6 @@ from django.core import validators
 from django.core.files.storage import default_storage
 from django.db import models
 from django.contrib.auth import models as auth_models
-from django.templatetags.static import static
 
 
 class ChoicesMixin:
@@ -77,7 +76,8 @@ class PlaydateUser(auth_models.AbstractUser):
 
         return result
 
-    def delete_old_profile_picture(self, old_file):
+    @staticmethod
+    def delete_old_profile_picture(old_file):
         if old_file and default_storage.exists(old_file.name):
             old_file.delete()
 

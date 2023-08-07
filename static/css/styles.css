@@ -111,6 +111,10 @@ form {
     flex-direction: column;
 }
 
+form p {
+    margin-top: 10px;
+}
+
 #title-h1 {
     text-align: center;
 }
