@@ -14,7 +14,7 @@ def playgrounds_list(request):
 def playground_details(request, pk):
     playground = get_object_or_404(Playground, pk=pk)
 
-    photos = Photo.objects.filter(playground_name=playground)
+    photos = Photo.objects.filter(playground=playground)
 
     context = {
         "playground": playground,

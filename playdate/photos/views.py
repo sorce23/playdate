@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -8,13 +9,18 @@ from django.views import generic as views
 from .models import Photo
 from ..playgrounds.models import Playground
 
+UserModel = get_user_model()
 
+
+@login_required
 def photo_list(request):
-    photos = Photo.objects.all()
+    user = request.user
+    photos = Photo.objects.filter(user=user)
 
     context = {"photos": photos}
 
     return render(request, "photos/photo_list.html", context)
+
 
 @login_required
 def photo_add(request, pk):

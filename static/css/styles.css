@@ -97,6 +97,14 @@ body, html {
     padding: 5%;
 }
 
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
 /* FORM FIELDS */
 
 .container-form {
@@ -212,135 +220,178 @@ textarea {
     font-size: 20px;
 }
 
-/*!* PHOTO DETAILS *!*/
+/* PHOTO DETAILS */
 
-/*.card {*/
-/*  width: 100%;*/
-/*  max-width: 600px;*/
-/*  background-color: #fcf5b3;*/
-/*  border-radius: 10px;*/
-/*  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);*/
-/*  padding: 20px;*/
-/*}*/
+.photo-details-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 800px;
+}
 
-/*.card .top {*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*  align-items: center;*/
-/*  margin-bottom: 15px;*/
-/*}*/
+.photo-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
 
-/*.card .userDetails {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.like-share {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
 
-/*.card .userDetails .profile_img {*/
-/*  width: 40px;*/
-/*  height: 40px;*/
-/*  border-radius: 50%;*/
-/*  overflow: hidden;*/
-/*  margin-right: 10px;*/
-/*}*/
+.photo-location {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #888;
+}
 
-/*.card .userDetails .profile_img img {*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  object-fit: cover;*/
-/*}*/
+.photo-description {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+}
 
-/*.card .photo-info {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.publish-date {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+}
 
-/*.card .photo-info span {*/
-/*  margin-right: 10px;*/
-/*  font-weight: bold;*/
-/*}*/
+.comments {
+    display: flex;
+    margin-top: 20px;
+}
 
-/*.card .photo-info .edit-delete-btns {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.comment-user img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
-/*.card .photo-info .edit-delete-btns a {*/
-/*  margin-right: 5px;*/
-/*}*/
+.comment-content {
+    margin-left: 10px;
+}
 
-/*.card .imgBx {*/
-/*  text-align: center;*/
-/*}*/
+.comment-content p {
+    font-size: 14px;
+    margin: 0;
+}
 
-/*.card .bottom {*/
-/*  margin-top: 15px;*/
-/*}*/
+.comment-date {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
 
-/*.card .bottom .actionBtns {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.add-comment {
+    margin-top: 20px;
+}
 
-/*.card .bottom .actionBtns .left {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.photo-edit {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-/*.card .bottom .actionBtns .left a {*/
-/*  margin-right: 10px;*/
-/*}*/
+.buttons-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/*.card .bottom .actionBtns .likes {*/
-/*  font-weight: bold;*/
-/*  margin-bottom: 10px;*/
-/*}*/
+.photo-edit-title {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
 
-/*.card .bottom .comments {*/
-/*  margin-top: 10px;*/
-/*}*/
+.edit-img,
+.delete-img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
 
-/*.card .bottom .comments .top {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.edit-img:hover,
+.delete-img:hover {
+    transform: scale(1.1);
+}
 
-/*.card .bottom .comments .top .comment-data {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+/* PHOTO LIST */
 
-/*.card .bottom .comments .top .comment-data .profilepic {*/
-/*  width: 10px;*/
-/*  height: 10px;*/
-/*  border-radius: 50%;*/
-/*  overflow: hidden;*/
-/*  margin-right: 10px;*/
-/*}*/
+.photo-list-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-/*.card .bottom .comments .top .comment-data .profilepic img {*/
-/*  width: 20%;*/
-/*  height: 20%;*/
-/*  object-fit: cover;*/
-/*}*/
+.photo-list-container h2 {
+    text-align: center;
+}
 
-/*.addComments {*/
-/*    display: flex;*/
-/*    align-items: center;*/
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
 
-/*    margin-top: 20px;*/
-/*}*/
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-/*.addComments form {*/
-/*    width: 100%;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-/*.addComments form button {*/
-/*  padding: 5px 15px;*/
-/*  background-color: #0095f6;*/
-/*  color: #fff;*/
-/*  border: none;*/
-/*  border-radius: 5px;*/
-/*  cursor: pointer;*/
-/*}*/
+.no-photos-message {
+    font-size: 16px;
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* INDEX */
+
+.search-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-form {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.playground-list {
+    list-style-type: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.playground-list li {
+    margin-bottom: 5px;
+    text-align: center;
+}

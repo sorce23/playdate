@@ -1,5 +1,6 @@
 from django import forms
 from .models import Comment
+from ..playgrounds.models import Country
 
 
 class CommentForm(forms.ModelForm):
@@ -15,12 +16,5 @@ class CommentForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    search_text = forms.CharField(
-        max_length=200,
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by city...",
-            },
-        )
-    )
+    country_choices = Country.choices()
+    country = forms.ChoiceField(choices=country_choices)

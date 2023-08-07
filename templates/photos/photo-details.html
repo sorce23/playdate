@@ -2,23 +2,30 @@
 {% load static %}
 
 {% block page_content %}
-    <div class="container-main">
-        {% if user == photo.user_id %}
-            <div class="photo-edit">
-                <div class="buttons-group">
-                    <a href="{% url 'photo edit' photo.pk %}">
-                        <img class="edit-img" src="{% static 'images/pen-edit.svg' %}" alt="edit button">
-                    </a>
-                    <a href="{% url 'photo delete' photo.pk %}">
-                        <img class="bin-img" src="{% static 'images/bin-delete.svg' %}" alt="bin button">
-                    </a>
-                </div>
-            </div>
-        {% endif %}
+    <div class="container-main photo-details-container">
 
         <section class="photo-image">
             <img src="{{ photo.playground_image.url }}" alt="{{ photo.playground_name }}">
         </section>
+
+        {% if user.pk == photo.user_id %}
+            <div class="photo-edit">
+                <div class="buttons-group">
+                    <div>
+                        <span class="photo-edit-title">Edit photo</span>
+                        <a href="{% url 'photo edit' photo.pk %}">
+                            <img class="edit-img" src="{% static 'images/pen-edit.svg' %}" alt="edit button">
+                        </a>
+                    </div>
+                    <div>
+                        <span class="photo-edit-title">Delete photo</span>
+                        <a href="{% url 'photo delete' photo.pk %}">
+                            <img class="delete-img" src="{% static 'images/bin-delete.svg' %}" alt="delete button">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="like-share">
             <div class="left">
@@ -83,20 +90,22 @@
         </div>
 
     {% if photo.location %}
-        <span>{{ photo.location }}</span>
+        <span class="photo-location">{{ photo.location }}</span>
     {% endif %}
     <p class="photo-description">{{ photo.description }}</p>
     <h5 class="publish-date">{{ photo.date_of_publication }}</h5>
         {% for comment in photo.comment_set.all %}
             <div class="comments">
-                <div class="image">
+                <div class="comment-user">
                     <img src="{{ comment.user.profile_picture.url }}" alt="{{ comment.user.username }}">
                 </div>
-                <p>
-                    <a href="{% url 'profile details visit' comment.user.pk %}">{{ comment.user }}</a>
-                    {{ comment.comment_text }}
-                </p>
-                <span>{{ comment.date_time_of_publication }}</span>
+                <div class="comment-content">
+                    <p>
+                        <a href="{% url 'profile details visit' comment.user.pk %}">{{ comment.user }}</a>
+                        {{ comment.comment_text }}
+                    </p>
+                    <span>{{ comment.date_time_of_publication }}</span>
+                </div>
             </div>
         {% endfor %}
 

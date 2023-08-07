@@ -13,13 +13,13 @@
                 <span class="navbar-list-item">Playgrounds</span>
             </a>
         </li>
-        <li class="navbar-item">
-            <a href="{% url 'photo list' %}">
-                <span class="navbar-list-item">Photos</span>
-            </a>
-        </li>
 
         {% if request.user.is_authenticated %}
+            <li class="navbar-item">
+                <a href="{% url 'photo list' %}">
+                    <span class="navbar-list-item">Photos</span>
+                </a>
+            </li>
             <li class="navbar-item">
                 <a href="{% url 'playground add' %}">
                     <span class="navbar-list-item">Add Playground</span>

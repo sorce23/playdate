@@ -5,33 +5,35 @@ from playdate.photos.models import Photo
 from .models import Like, Comment
 from .forms import CommentForm, SearchForm
 from ..accounts.models import PlaydateUser
+from ..playgrounds.models import Playground
 
 
 def index(request):
-    photos = Photo.objects.all()
+    form = SearchForm()
     users = PlaydateUser.objects.all()
 
-    search_form = SearchForm(request.GET)
-
-    if search_form.is_valid():
-        search_text = search_form.cleaned_data["search_text"]
-        photos = photos.filter(playground_name__name__icontains=search_text)
-
-    if request.user.is_authenticated:
-
-        for photo in photos:
-            photo.liked_by_user = photo.like_set \
-                .filter(user=request.user) \
-                .exists()
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            country = form.cleaned_data["country"]
+            playgrounds = Playground.objects.filter(country=country).order_by("city")
+        else:
+            playgrounds = Playground.objects.all()
+    else:
+        country = request.GET.get("country")
+        if country:
+            playgrounds = Playground.objects.filter(country=country).order_by("city")
+        else:
+            playgrounds = Playground.objects.all()
 
     context = {
-        "users": users,
-        "all_photos": photos,
+        "playgrounds": playgrounds,
+        "form": form,
         "comment_form": CommentForm(),
-        "search_form": search_form,
+        "users": users,
     }
 
-    return render(request, "base/index.html", context=context)
+    return render(request, "base/index.html", context)
 
 
 @login_required
@@ -53,7 +55,6 @@ def like_functionality(request, photo_id):
         new_like_object = Like(**kwargs)
         new_like_object.save()
 
-    # http://127.0.0.1:8000/
     return redirect(request.META["HTTP_REFERER"] + f"#{photo_id}")
 
 
@@ -70,8 +71,6 @@ def comment_functionality(request, photo_id):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            print("form is valid")
-
             new_comment_instance = form.save(commit=False)
             new_comment_instance.to_photo = photo
             new_comment_instance.user = request.user

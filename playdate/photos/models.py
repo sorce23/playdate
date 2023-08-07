@@ -30,10 +30,12 @@ class Photo(models.Model):
         blank=True,
         null=True,
     )
-    playground_name = models.ForeignKey(
+    playground = models.ForeignKey(
         Playground,
         on_delete=models.CASCADE,
-        blank=True)
+        blank=True,
+        related_name="photos",
+    )
     date_of_publication = models.DateField(auto_now=True)
 
     user = models.ForeignKey(

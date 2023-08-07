@@ -3,4 +3,21 @@
 
 {% block page_content %}
 
+    <div class="container-main photo-list-container">
+        <h2>Your Photos</h2>
+        {% if photos %}
+            <div class="photo-grid">
+                {% for photo in photos %}
+                    <div class="photo-item">
+                        <a href="{% url 'photo details' photo.pk %}">
+                            <img src="{{ photo.playground_image.url }}" alt="{{ photo.playground_name }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-photos-message">You haven't added any photos yet.</p>
+        {% endif %}
+    </div>
+
 {% endblock %}
