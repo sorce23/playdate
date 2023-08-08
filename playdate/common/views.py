@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 
 from playdate.photos.models import Photo
 from .models import Like, Comment
@@ -60,8 +61,10 @@ def like_functionality(request, photo_id):
 
 @login_required
 def share_functionality(request, photo_id):
+    photo = get_object_or_404(Photo, pk=photo_id)
+    shareable_link = request.build_absolute_uri(photo.get_absolute_url())
 
-    return redirect(request.META["HTTP_REFERER"] + f"#{photo_id}")
+    return JsonResponse({"shareable_link": shareable_link})
 
 
 @login_required

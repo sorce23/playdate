@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.validators import MinLengthValidator
+from django.urls import reverse
+
 from .validators import image_size_validator_5mb
 
 from playdate.playgrounds.models import Playground
@@ -45,3 +47,6 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"{self.pk} - {self.playground_image}"
+
+    def get_absolute_url(self):
+        return reverse('photo details', args=[str(self.pk)])

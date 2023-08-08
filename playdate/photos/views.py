@@ -50,7 +50,7 @@ def photo_details(request, pk):
     comment_form = CommentForm()
 
     context = {
-        "user": photo.user,
+        "user": request.user,
         "photo": photo,
         "likes": photo.like_set.count(),
         "comments": photo.comment_set.all(),
