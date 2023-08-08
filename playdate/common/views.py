@@ -18,13 +18,13 @@ def index(request):
             country = form.cleaned_data["country"]
             playgrounds = Playground.objects.filter(country=country).order_by("city")
         else:
-            playgrounds = Playground.objects.all()
+            playgrounds = Playground.objects.all().order_by("-rating", "country")
     else:
         country = request.GET.get("country")
         if country:
             playgrounds = Playground.objects.filter(country=country).order_by("city")
         else:
-            playgrounds = Playground.objects.all()
+            playgrounds = Playground.objects.all().order_by("-rating", "country")
 
     context = {
         "playgrounds": playgrounds,

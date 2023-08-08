@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+<div class="container-form">
+  <h2>Confirm Photo Deletion</h2>
+    <p>Are you sure you want to delete the photo?</p>
+    <form method="post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="buttons-group">
+          <button type="submit" class="form-button">Yes</button>
+          <a href="{% url 'photo details' photo.pk %}" class="form-button">No</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block page_content %}
+
 <div class="container-form">
   <h2>Delete Playground?</h2>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post">
 
     {% csrf_token %}
     {{ form.as_p }}
@@ -15,4 +16,5 @@
     </div>
   </form>
 </div>
+
 {% endblock %}

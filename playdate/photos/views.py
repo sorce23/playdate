@@ -1,11 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse
 
 from playdate.common.forms import CommentForm
 from .forms import PhotoAddForm, PhotoEditForm
-from django.views import generic as views
 from .models import Photo
 from ..playgrounds.models import Playground
 
@@ -32,9 +30,11 @@ def photo_add(request, pk):
         if form.is_valid():
             photo = form.save(commit=False)
             photo.user = request.user
-            photo.playground_name = playground
+            photo.playground = playground
             photo.save()
         return redirect("playground details", pk=pk)
+    else:
+        form = PhotoAddForm(initial={"playground": playground})
 
     context = {
         "form": form,
@@ -86,5 +86,10 @@ def photo_edit(request, pk):
 @login_required
 def photo_delete(request, pk):
     photo = Photo.objects.get(pk=pk)
-    photo.delete()
-    return redirect("index")
+
+    if request.method == "POST":
+        photo.delete()
+        return redirect("index")
+
+    context = {"photo": photo}
+    return render(request, "photos/photo-delete.html", context)
