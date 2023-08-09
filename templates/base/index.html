@@ -3,19 +3,56 @@
 {% block page_content %}
 
 <section class="container-main">
-    <div class="search-container">
-        <form class="search-form" method="post" action="{% url 'index' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="form-button">Search</button>
-        </form>
+
+    <div class="search-playground-container">
+        <div class="search-container">
+            <form class="search-form" method="post" action="{% url 'index' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="form-button">Search</button>
+            </form>
+        </div>
+
+        <div class="playground-list">
+        <h3>Playgrounds by rating and country:</h3>
+            <br>
+            {% for playground in playgrounds %}
+                <li>
+                    <a href="{% url 'playground details' playground.pk %}">{{ playground.name }}</a>
+                    , {{ playground.city }}, {{ playground.get_country_display }}
+                </li>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="playground-list">
-        {% for playground in playgrounds %}
-            <li><a href="{% url 'playground details' playground.pk %}">{{ playground.name }}</a>, {{ playground.city }}, {{ playground.get_country_display }}</li>
+    <div class="slideshow-container">
+        {% for photo in photos %}
+            <div class="mySlides">
+                <h4 class="index-photo-title">{{ photo.playground.name }}</h4>
+                <img src="{{ photo.playground_image.url }}" alt="{{ photo.playground }}"/>
+            </div>
         {% endfor %}
     </div>
+
 </section>
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // Change slide every 3 seconds
+    }
+</script>
 
 {% endblock %}

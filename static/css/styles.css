@@ -92,7 +92,10 @@ body, html {
 }
 
 .container-main {
-    max-width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 100%;
     margin: 0 auto;
     padding: 5%;
 }
@@ -375,13 +378,12 @@ textarea {
 
 .search-container {
     text-align: center;
-    margin-top: 20px;
 }
 
 .search-form {
     display: inline-block;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #f3ebd9;
     border-radius: 5px;
 }
 
@@ -410,4 +412,74 @@ textarea {
 
 .share a:hover {
     color: dodgerblue;
+}
+
+.slideshow-container {
+    position: relative;
+    height: 100%;
+    width: calc(50% - 20px);
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.index-photo-title {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container-main {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbar {
+        height: 60px;
+    }
+
+    .footer {
+        height: 30px;
+    }
+
+    .container-form {
+        max-width: 90%;
+    }
+
+    .playground-details {
+        padding: 2rem 5%;
+    }
+
+    .photo-details-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .photo-list-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .search-form {
+        padding: 5px;
+    }
+
+    .playground-list li {
+        margin-bottom: 3px;
+    }
+
+    .slideshow-container {
+        width: 100%;
+        height: 50vh;
+        margin: 10px 0;
+    }
+
+    .mySlides img {
+        height: 100%;
+    }
 }

@@ -12,6 +12,7 @@ from ..playgrounds.models import Playground
 def index(request):
     form = SearchForm()
     users = PlaydateUser.objects.all()
+    photos = Photo.objects.all()
 
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -32,6 +33,7 @@ def index(request):
         "form": form,
         "comment_form": CommentForm(),
         "users": users,
+        "photos": photos,
     }
 
     return render(request, "base/index.html", context)
