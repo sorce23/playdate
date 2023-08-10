@@ -5,25 +5,25 @@
 
 <div class="playground-details">
     <h2>{{ playground.name }}</h2>
-    <p><strong>Description:</strong></p>
+    <p><strong><i>Description:</i></strong></p>
     <p> {{ playground.description }}</p>
-    <p><strong>Address:</strong></p>
+    <p><strong><i>Address:</i></strong></p>
     <p>{{ playground.address }}</p>
-    <p><strong>City:</strong></p>
+    <p><strong><i>City:</i></strong></p>
     <p>{{ playground.city }}</p>
-    <p><strong>Country:</strong></p>
+    <p><strong><i>Country:</i></strong></p>
     <p>{{ playground.get_country_display }}</p>
-    <p><strong>Availability:</strong></p>
+    <p><strong><i>Availability:</i></strong></p>
     <p>{{ playground.get_availability_display }}</p>
     {% if playground.price %}
-        <p><strong>Price:</strong></p>
+        <p><strong><i>Price:</i></strong></p>
         <p>{{ playground.price|floatformat:2 }} &euro;</p>
     {% endif %}
     {% if playground.latitude and playground.longitude %}
-        <p><strong>Coordinates:</strong> {{ playground.latitude }}, {{ playground.longitude }}</p>
+        <p><strong><i>Coordinates:</i></strong> {{ playground.latitude }}, {{ playground.longitude }}</p>
     {% endif %}
     {% if playground.rating %}
-        <p><strong>Rating:</strong>{{ playground.get_rating_display }}</p>
+        <p><strong><i>Rating:</i></strong>{{ playground.get_rating_display }}</p>
     {% endif %}
 
     <div class="playground-edit">

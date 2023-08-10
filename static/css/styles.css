@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Courgette&family=Lumanosimo&family=Teko&family=Ysabeau+Infant:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:ital@0;1&display=swap');
 
 body, html {
     font-family: "Ysabeau Infant", Arial, sans-serif;
@@ -175,7 +175,8 @@ textarea {
     max-width: 100%;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .content-section .about-wrapper .about-item .about-img {
