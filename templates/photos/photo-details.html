@@ -2,11 +2,16 @@
 {% load static %}
 
 {% block page_content %}
-    <div class="container-main photo-details-container">
+    <div class="photo-details-container">
 
         <section class="photo-image">
             <img src="{{ photo.playground_image.url }}" alt="{{ photo.playground_name }}">
         </section>
+        {% if photo.location %}
+            <span class="photo-location">{{ photo.location }}</span>
+        {% endif %}
+        <p class="photo-description">{{ photo.description }}</p>
+        <h5 class="publish-date">{{ photo.date_of_publication }}</h5>
 
         {% if user.pk == photo.user_id %}
             <div class="photo-edit">
@@ -87,11 +92,7 @@
             </div>
         </div>
 
-    {% if photo.location %}
-        <span class="photo-location">{{ photo.location }}</span>
-    {% endif %}
-    <p class="photo-description">{{ photo.description }}</p>
-    <h5 class="publish-date">{{ photo.date_of_publication }}</h5>
+
         {% for comment in photo.comment_set.all %}
             <div class="comments">
                 <div class="comment-user">

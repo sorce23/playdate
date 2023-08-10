@@ -17,7 +17,7 @@
     <p>{{ playground.get_availability_display }}</p>
     {% if playground.price %}
         <p><strong>Price:</strong></p>
-        <p>{{ playground.price }}</p>
+        <p>{{ playground.price|floatformat:2 }} &euro;</p>
     {% endif %}
     {% if playground.latitude and playground.longitude %}
         <p><strong>Coordinates:</strong> {{ playground.latitude }}, {{ playground.longitude }}</p>

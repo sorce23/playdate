@@ -9,18 +9,21 @@ from django.utils.text import slugify
 UserModel = get_user_model()
 
 
-class ChoicesMixin:
+class ChoicesMixinWithModifiedDisplay(Enum):
     @classmethod
     def choices(cls):
-        return [(choice.value, choice.name) for choice in cls]
+        return [(choice.value, choice.name.replace("_", " ")) for choice in cls]
+
+    def _generate_next_value_(name, start, count, last_values):
+        return name.replace("_", " ")
 
 
-class Availability(ChoicesMixin, Enum):
+class Availability(ChoicesMixinWithModifiedDisplay, Enum):
     FREE = 1
     PAID = 2
 
 
-class Country(ChoicesMixin, Enum):
+class Country(ChoicesMixinWithModifiedDisplay, Enum):
     ALBANIA = 1
     ANDORRA = 2
     AUSTRIA = 3
@@ -69,7 +72,7 @@ class Country(ChoicesMixin, Enum):
     VATICAN_CITY = 46
 
 
-class Rating(ChoicesMixin, Enum):
+class Rating(ChoicesMixinWithModifiedDisplay, Enum):
     VERY_POOR = 1
     POOR = 2
     MEDIOCRE = 3

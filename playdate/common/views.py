@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from playdate.photos.models import Photo
-from .models import Like, Comment
+from .models import Like
 from .forms import CommentForm, SearchForm
 from ..accounts.models import PlaydateUser
 from ..playgrounds.models import Playground
@@ -14,7 +14,7 @@ def index(request):
     users = PlaydateUser.objects.all()
     photos = Photo.objects.all()
 
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
         form = SearchForm(request.POST)
         if form.is_valid():
             country = form.cleaned_data["country"]
@@ -31,7 +31,6 @@ def index(request):
     context = {
         "playgrounds": playgrounds,
         "form": form,
-        "comment_form": CommentForm(),
         "users": users,
         "photos": photos,
     }

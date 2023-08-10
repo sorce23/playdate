@@ -1,5 +1,6 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.http import HttpResponse
-from django.templatetags.static import static
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
@@ -44,6 +45,7 @@ class LogoutUserView(auth_views.LogoutView):
     pass
 
 
+@method_decorator(login_required, name='dispatch')
 class ProfileDetailsView(views.DetailView):
     template_name = "accounts/profile-details.html"
     model = UserModel
@@ -54,6 +56,7 @@ class ProfileDetailsViewVisit(views.DetailView):
     model = UserModel
 
 
+@method_decorator(login_required, name='dispatch')
 class ProfileEditView(views.UpdateView):
     template_name = "accounts/profile-edit.html"
     model = UserModel
@@ -70,6 +73,7 @@ class ProfileEditView(views.UpdateView):
         return reverse("profile details", kwargs={"pk": self.object.pk})
 
 
+@method_decorator(login_required, name='dispatch')
 class ProfileDeleteView(views.DeleteView):
     template_name = "accounts/profile-delete.html"
     model = UserModel
