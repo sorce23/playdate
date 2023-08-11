@@ -143,8 +143,8 @@ textarea {
     margin: 20px 0;
     padding: 10px 20px;
     text-decoration: none;
-    color: greenyellow;
-    background-color: dodgerblue;
+    color: #dcfabe;
+    background-color: #5dc1dd;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -412,7 +412,7 @@ textarea {
 }
 
 .share a:hover {
-    color: dodgerblue;
+    color: #88d4e3;
 }
 
 .slideshow-container {
