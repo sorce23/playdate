@@ -1,5 +1,3 @@
-import profile
-
 from django.urls import path, include
 from .views import RegisterUserView, LoginUserView, LogoutUserView, \
         ProfileEditView, ProfileDeleteView, ProfileDetailsView, ProfileDetailsViewVisit

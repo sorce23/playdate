@@ -60,7 +60,7 @@ def photo_details(request, pk):
     return render(
         request,
         "photos/photo-details.html",
-        context=context
+        context
     )
 
 
