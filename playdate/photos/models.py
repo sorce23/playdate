@@ -49,4 +49,4 @@ class Photo(models.Model):
         return f"{self.pk} - {self.playground_image}"
 
     def get_absolute_url(self):
-        return reverse('photo details', args=[str(self.pk)])
+        return reverse("photo details", args=[str(self.pk)])

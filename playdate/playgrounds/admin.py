@@ -4,5 +4,5 @@ from .models import Playground
 
 @admin.register(Playground)
 class PlaygroundAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug",)
-
+    list_display = ("name", "country", "owner")
+    list_filter = ("availability", "country")

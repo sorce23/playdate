@@ -150,7 +150,7 @@ class Playground(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.pk} - {self.name}"
+        return f"{self.name} - {self.pk}"
 
     def get_absolute_url(self):
         return reverse("playground details", args=[str(self.pk)])

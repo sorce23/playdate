@@ -4,5 +4,5 @@ from .models import Photo
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ("id", "date_of_publication",)
-    list_filter = ("playground", "user", )
+    list_display = ("id", "playground", "date_of_publication")
+    list_filter = ("playground", "user")

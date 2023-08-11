@@ -41,7 +41,7 @@ def photo_add(request, pk):
         "playground": playground,
     }
 
-    return render(request, "photos/photo-add.html", context=context)
+    return render(request, "photos/photo-add.html", context)
 
 
 @login_required

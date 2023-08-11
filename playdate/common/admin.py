@@ -4,9 +4,9 @@ from .models import Comment, Like
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("id", "date_time_of_publication", "to_photo")
+    list_display = ("user", "id", "date_time_of_publication", "to_photo")
 
 
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("user", "to_photo")
